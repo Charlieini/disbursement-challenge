@@ -1,0 +1,2 @@
+class DisbursementBuilder < ApplicationRecord
+end
