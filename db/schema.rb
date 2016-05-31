@@ -11,13 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160308174110) do
+ActiveRecord::Schema.define(version: 20160531155142) do
 
   create_table "carts", force: :cascade do |t|
     t.decimal  "principal_amount", precision: 16, scale: 2, null: false
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
   end
+
+  create_table "disbursements", force: :cascade do |t|
+    t.integer  "merchant_id", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "disbursements", ["merchant_id"], name: "index_disbursements_on_merchant_id"
+
+  create_table "installments", force: :cascade do |t|
+    t.integer  "disbursement_id",                          null: false
+    t.integer  "order_id",                                 null: false
+    t.decimal  "amount",          precision: 16, scale: 2
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
+  end
+
+  add_index "installments", ["disbursement_id"], name: "index_installments_on_disbursement_id"
+  add_index "installments", ["order_id"], name: "index_installments_on_order_id"
 
   create_table "merchants", force: :cascade do |t|
     t.string   "name",       null: false
@@ -26,6 +45,15 @@ ActiveRecord::Schema.define(version: 20160308174110) do
   end
 
   add_index "merchants", ["name"], name: "index_merchants_on_name", unique: true
+
+  create_table "order_accountings", force: :cascade do |t|
+    t.integer  "order_id",                            null: false
+    t.decimal  "amount",     precision: 16, scale: 2
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "order_accountings", ["order_id"], name: "index_order_accountings_on_order_id"
 
   create_table "orders", force: :cascade do |t|
     t.integer  "merchant_id",       null: false
