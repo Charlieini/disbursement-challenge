@@ -11,12 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160531155142) do
+ActiveRecord::Schema.define(version: 20160531155501) do
 
   create_table "carts", force: :cascade do |t|
     t.decimal  "principal_amount", precision: 16, scale: 2, null: false
     t.datetime "created_at",                                null: false
     t.datetime "updated_at",                                null: false
+  end
+
+  create_table "disbursement_builders", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "disbursements", force: :cascade do |t|
