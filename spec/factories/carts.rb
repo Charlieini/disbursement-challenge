@@ -5,7 +5,7 @@ FactoryGirl.define do
 
   end
 
-  factory :cart2 do
+  factory :cart2 , class: Cart do
     principal_amount 200
   end
 
