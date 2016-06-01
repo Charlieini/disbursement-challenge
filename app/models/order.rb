@@ -11,14 +11,22 @@ class Order < ApplicationRecord
     Order.where(:updated_at => 1.week.ago.beginning_of_week..1.week.ago.end_of_week)
   end
 
-  def calculate_installment
+  def assign_order_accounting
     OrderAccounting.find_or_create_by(order_id: self.id)
+  end
 
-    amount = (Cart.find(self.shipped_cart_id).principal_amount - OrderAccounting.find_by(order_id: self.id).amount)
-    
-    Installment.create(order_id: self.id, amount: amount, disbursement_id: Disbursement.set(self.merchant_id))
+  def update_order_accounting_amount
+    OrderAccounting.find_by(order_id: self.id).update(amount: self.shipped_cart.principal_amount)
+  end
 
-    OrderAccounting.find_by(order_id: self.id).update(amount: amount)
+  def generate_installment
+    order_accounting = assign_order_accounting
+
+    installment_amount = (self.shipped_cart.principal_amount - order_accounting.amount)
+
+    Installment.create(order_id: self.id, amount: installment_amount, disbursement_id: Disbursement.set(self.merchant_id))
+
+    update_order_accounting_amount
   end
 
 end
