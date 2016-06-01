@@ -1,5 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe DisbursementBuilder, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe "run_weekly" do
+    it "should perfom database queries" do
+      expect(DisbursementBuilder.run_weekly).to be_a(Array)
+    end
+  end
+
 end

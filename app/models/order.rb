@@ -12,6 +12,13 @@ class Order < ApplicationRecord
   end
 
   def calculate_installment
+    OrderAccounting.find_or_create_by(order_id: self.id)
+
+    amount = (Cart.find(self.shipped_cart_id).principal_amount - OrderAccounting.find_by(order_id: self.id).amount)
+    
+    Installment.create(order_id: self.id, amount: amount, disbursement_id: Disbursement.set(self.merchant_id))
+
+    OrderAccounting.find_by(order_id: self.id).update(amount: amount)
   end
 
 end
