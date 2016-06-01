@@ -5,7 +5,7 @@
 
 <ul>
   <% @merchant.disbursements.each do |disbursement| %>
-    <li>Disbursement <%= link_to disbursement.created_at.strftime("%Y-%d-%d"), merchant_disbursement_path(@merchant, disbursement) %> </li>
+    <li>Disbursement <%= link_to disbursement.created_at.strftime("%Y-%m-%d"), merchant_disbursement_path(@merchant, disbursement) %> </li>
   <% end %>
 </ul>
 

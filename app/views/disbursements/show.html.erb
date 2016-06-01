@@ -6,7 +6,7 @@
 </p>
 
 <p>
-  Disbursement <%= @disbursement.created_at.strftime("%Y-%d-%d") %>
+  Disbursement <%= @disbursement.created_at.strftime("%Y-%m-%d") %>
 </p>
 <ul>
   <% @disbursement.installments.each do |installment| %>

@@ -1,0 +1,2 @@
+class Comission < ApplicationRecord
+end

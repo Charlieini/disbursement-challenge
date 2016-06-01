@@ -22,7 +22,7 @@ class Order < ApplicationRecord
   def generate_installment
     order_accounting = assign_order_accounting
 
-    installment_amount = (self.shipped_cart.principal_amount - order_accounting.amount)
+    installment_amount = (self.shipped_cart.principal_amount - order_accounting.amount) - Comission.calculate
 
     Installment.create(order_id: self.id, amount: installment_amount, disbursement_id: Disbursement.set(self.merchant_id))
 
