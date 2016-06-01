@@ -5,5 +5,8 @@
   <%= @merchant.name %>
 </p>
 
+<p><%= link_to "Disbursements", merchant_disbursements_path(@merchant) %></p>
+
+
 <%= link_to 'Edit', edit_merchant_path(@merchant) %> |
 <%= link_to 'Back', merchants_path %>

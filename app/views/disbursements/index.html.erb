@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @merchant.name %> Disbursements</h1>
+
+
+<ul>
+  <% @merchant.disbursements.each do |disbursement| %>
+    <li>Disbursement <%= link_to disbursement.created_at.strftime("%Y-%d-%d"), merchant_disbursement_path(@merchant, disbursement) %> </li>
+  <% end %>
+</ul>
+
+<%= link_to 'Back', merchant_path(@merchant) %>

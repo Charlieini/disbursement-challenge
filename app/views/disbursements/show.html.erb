@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Merchant:</strong>
+  <%= @merchant.name %>
+</p>
+
+<p>
+  Disbursement <%= @disbursement.created_at.strftime("%Y-%d-%d") %>
+</p>
+<ul>
+  <% @disbursement.installments.each do |installment| %>
+    <li><%= installment.order.order_number%> => <%= installment.amount%> € </li>
+  <% end %>
+  <p>=total=>  <%= @total%></p>
+</ul>
+
+
+
+<%= link_to 'Back', merchant_disbursements_path %>
