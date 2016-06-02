@@ -13,18 +13,19 @@ Merchant.create(name: "merchant_four")
 Merchant.create(name: "merchant_five")
 
 
-Cart.create(principal_amount: 1.11)
-Cart.create(principal_amount: 2.22)
-Cart.create(principal_amount: 3.33)
-Cart.create(principal_amount: 4.44)
-Cart.create(principal_amount: 5.55)
-Cart.create(principal_amount: 6.66)
-Cart.create(principal_amount: 7.77)
-Cart.create(principal_amount: 8.88)
-Cart.create(principal_amount: 9.99)
-Cart.create(principal_amount: 10.10)
-Cart.create(principal_amount: 11.11)
-Cart.create(principal_amount: 12.12)
+Cart.create(principal_amount: 100)
+Cart.create(principal_amount: 200)
+Cart.create(principal_amount: 300)
+Cart.create(principal_amount: 400)
+Cart.create(principal_amount: 500)
+Cart.create(principal_amount: -600)
+Cart.create(principal_amount: 700)
+Cart.create(principal_amount: 800)
+Cart.create(principal_amount: 900)
+Cart.create(principal_amount: 1000)
+Cart.create(principal_amount: 1100)
+Cart.create(principal_amount: 1200)
+Cart.create(principal_amount: 606.06)
 
 Order.create(merchant_id: 1, order_number: "1#BBB123", confirmed_at: Time.now - 1.month, shipped_at:Time.now - 1.week, unshipped_cart_id:1, shipped_cart_id: 2)
 Order.create(merchant_id: 1, order_number: "1#BBB124", confirmed_at: Time.now - 1.month, shipped_at:Time.now - 1.week, unshipped_cart_id:3, shipped_cart_id: 4, updated_at: Time.now - 1.week)
@@ -32,3 +33,12 @@ Order.create(merchant_id: 1, order_number: "1#BBB125", confirmed_at: Time.now - 
 Order.create(merchant_id: 2, order_number: "2#BBB123", confirmed_at: Time.now - 1.month, shipped_at:Time.now - 1.week, unshipped_cart_id:7, shipped_cart_id: 8)
 Order.create(merchant_id: 2, order_number: "2#BBB124", confirmed_at: Time.now - 1.month, shipped_at:Time.now - 1.week, unshipped_cart_id:9, shipped_cart_id: 10, updated_at: Time.now - 1.week)
 Order.create(merchant_id: 2, order_number: "2#BBB125", confirmed_at: Time.now - 1.month, shipped_at:Time.now - 1.week, unshipped_cart_id:11, shipped_cart_id: 12, updated_at: Time.now - 1.week)
+Order.create(merchant_id: 1, order_number: "1#BBB126", confirmed_at: Time.now - 1.month, shipped_at:Time.now - 2.week, unshipped_cart_id:5, shipped_cart_id: 6, updated_at: Time.now - 2.week)
+
+
+
+Disbursement.create(merchant_id:1, created_at: Time.now - 1.week)
+
+Installment.create(disbursement_id: 1, order_id: 7, amount:606.06)
+
+DisbursementBuilder.run_weekly
