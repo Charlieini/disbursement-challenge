@@ -7,7 +7,7 @@ RSpec.describe Comission, :type => :model do
     end
 
     it "should return the comission if a shopper return a item" do
-      expect(Comission.calculate(-99)).to eq(1)
+      expect(Comission.calculate(-100)).to eq(-1)
     end
   end
 end

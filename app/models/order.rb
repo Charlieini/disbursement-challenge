@@ -24,7 +24,7 @@ class Order < ApplicationRecord
     order_accounting = assign_order_accounting
 
     amount_before_comission = (self.shipped_cart.principal_amount - order_accounting.amount)
-    
+
     installment_amount = amount_before_comission - Comission.calculate(amount_before_comission)
 
     Installment.create(order_id: self.id, amount: installment_amount, disbursement_id: Disbursement.set(self.merchant_id))
